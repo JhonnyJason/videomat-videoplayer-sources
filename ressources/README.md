@@ -1,31 +1,88 @@
-# noname - 
+# Videomat - Videoplayer 
 
 # Why?
+[Videomat](https://videomat.org/) - a professional video producer agency from Graz - required some custom adjustments on how their videplayer on their websites work.
 
 # What?
+A package adding some features on the html5 video element via Javascript.
+
+- Convenient minimal definition of a src and vtt attribute in the video element.
+- Mode: "Autoplay" - Muted Autoplay in Loop
+    - Optional randomized start
+    - For multiple videos at once
+- Mode: "Regular" - reduced initial volume
+    - For multiple Videos at once, where the other videos of the same player are paused when playing another one.
+- Work nicely on most all devices
 
 # How?
-Requirements
-------------
 
 Installation
 ------------
-
+```shell
+$ npm install videomat-videoplayer
+```
 
 Usage
 -----
+```coffeescript
+playerFactory = require("videomat-videoplayer")
+options = {elements: "#my-video"}
 
+player = playerFactory.create(options)
+
+```
 
 Current Functionality
 ---------------------
+
+## Options
+
+```coffeescript
+defaultOptions =
+    elements: "video"
+    mode: "regular"
+    randostart: false
+    initialVolume: 0.2
+```
+
+### options.elements
+- may be a query-selector string as in `document.querySelectorAll(query-selector)`
+- may be a single DOM Element
+- may be an array of DOM Elements
+- must resolve regular type 1 nodes having the `"VIDEO"` tag
+### options.mode
+- may be `"regular"` - case insensitive
+- may be `"autoplay"` - case insensitive
+### options.randostart
+- may be `true`
+- may be `false`
+- will be overwritten to `false` in case of `mode` being `"regular"`
+### options.initialVolume
+- may be any float between `0.0` and `1.0`
+- however it is not checked for that
+
+
+## Play/Pause
+To play or pause all videos in the player you may simply call
+```coffeescript
+player.pauseAll()
+player.playAll()
+```
+
+## Destroy
+You may destroy the player at anytime. This will totally clear the corresponding video elements and remove all the EventListeners.
+
+```coffeescript
+player.destroy()
+```
 
 
 ---
 
 # Further steps
 
-- ...
-
+This player will furtherly be extended to mainly meet the specific needs of [Videomat](https://videomat.org/).
+However we are happy if it is useful to you too so feel free to throw in some ideas and point out some bugs.
 
 All sorts of inputs are welcome, thanks!
 

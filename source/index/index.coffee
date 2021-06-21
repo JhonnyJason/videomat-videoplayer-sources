@@ -1,3 +1,3 @@
 Object.defineProperty(exports, "__esModule", { value: true })
 
-exports.helloWorld = -> console.log("Hello World!")
+Object.assign(exports, require("./videoplayer"))
